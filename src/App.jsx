@@ -1,9 +1,19 @@
+import { useState } from "react"
+
+import GetGeoposition from "./components/GetGeoposition"
 import "./styles/App.css"
 
 function App() {
+  const [location, setLocation] = useState(null);
+
+  function handleLocationReceived(location){
+    setLocation(location);
+  }
 
   return (
-    <h1>Hello World!</h1>
+  <>
+    <GetGeoposition onLoactionReceived={handleLocationReceived}/>
+  </>
   )
 }
 
