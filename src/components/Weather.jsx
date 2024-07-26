@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react"
 
-function Weather({ cityId, local }){
+function Weather({ cityId, cityLocation, cityName }){
     const [error, setError] = useState(null);
 
     const [weather, setWeather] = useState(null);
@@ -33,7 +33,8 @@ function Weather({ cityId, local }){
 
     return(
         <>
-            <h1>{local}</h1>
+            <h3>{cityLocation}</h3>
+            <h1>{cityName}</h1>
             <h1>Clima Atual</h1>
             <h2>{weather}</h2>
         </>

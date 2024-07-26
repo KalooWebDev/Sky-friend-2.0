@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
-function GetCityId({ latitude, longitude, onCityReceived, onCityLocationReceived }) {
+function GetCityId({ latitude, longitude, onCityReceived }) {
   const [error, setError] = useState(null);
 
   const API_KEY = import.meta.env.VITE_API_KEY;
@@ -16,11 +16,10 @@ function GetCityId({ latitude, longitude, onCityReceived, onCityLocationReceived
           throw new Error("Failed to comunicate to API");
         }
         const data = await response.json();
-        console.log(data);
         const cityId = data.Key;
-        onCityReceived(cityId);
         const cityLocation = `${data.Country.LocalizedName}. ${data.AdministrativeArea.LocalizedName}`;
-        onCityLocationReceived(cityLocation);
+        const cityName = data.ParentCity.LocalizedName;
+        onCityReceived({cityId, cityLocation, cityName});
       } catch (err) {
         setError(err.message);
       }

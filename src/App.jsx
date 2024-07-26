@@ -8,19 +8,14 @@ import "./styles/App.css";
 
 function App() {
   const [location, setLocation] = useState(null);
-  const [cityLocal, setCityLocal] = useState(null);
-  const [cityId, setCityId] = useState(null);
+  const [city, setCity] = useState(null);
 
   function handleLocationReceived(location) {
     setLocation(location);
   }
 
-  function handleCitylocation(cityLocal){
-    setCityLocal(cityLocal);
-  }
-
-  function handleCityReceived(cityId) {
-    setCityId(cityId);
+  function handleCityReceived(city) {
+    setCity(city);
   }
 
   return (
@@ -31,11 +26,10 @@ function App() {
           latitude={location.latitude}
           longitude={location.longitude}
           onCityReceived={handleCityReceived}
-          onCityLocationReceived={handleCitylocation}
         />
       )}
-      {cityId &&(
-        <Weather cityId={cityId} local={cityLocal}></Weather>
+      {city &&(
+        <Weather cityId={city.cityId} cityLocation={city.cityLocation} cityName={city.cityName}></Weather>
       )}
     </>
   );
