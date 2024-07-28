@@ -11,7 +11,7 @@ function Search({ onCityReceived }) {
   const URL = `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${searchText}`;
 
   useEffect(() => {
-    if (searchText.length > 3) {
+    if (searchText.length > 0) {
       async function searchCity() {
         try {
           const response = await fetch(URL);
