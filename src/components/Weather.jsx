@@ -2,9 +2,12 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react"
 
+import { formatDate } from "../utils/dateUtils";
+
 function Weather({ cityId, cityLocation, cityName }){
     const [error, setError] = useState(null);
 
+    const [date, setDate] = useState("");
     const [weather, setWeather] = useState(null);
 
     const API_KEY = import.meta.env.VITE_API_KEY;
@@ -19,6 +22,7 @@ function Weather({ cityId, cityLocation, cityName }){
                 }
                 const data = await response.json();
                 console.log(data);
+                setDate(formatDate(data[0].LocalObservationDateTime));
                 setWeather(data[0].WeatherText);
             } catch (err){
                 setError(err.message)
@@ -35,6 +39,7 @@ function Weather({ cityId, cityLocation, cityName }){
         <>
             <h3>{cityLocation}</h3>
             <h1>{cityName}</h1>
+            <h3>{date}</h3>
             <h1>Clima Atual</h1>
             <h2>{weather}</h2>
         </>
