@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import GetGeoposition from "./components/GetGeoposition";
 import GetCityId from "./components/GetCityId";
+import Search from "./components/Search";
 import Weather from "./components/Weather";
 
 import "./styles/App.css";
@@ -21,6 +22,9 @@ function App() {
   return (
     <>
       <GetGeoposition onLocationReceived={handleLocationReceived} />
+      <header>
+        <Search onCityReceived={handleCityReceived}></Search>
+      </header>
       {location && (
         <GetCityId
           latitude={location.latitude}
@@ -28,9 +32,15 @@ function App() {
           onCityReceived={handleCityReceived}
         />
       )}
-      {city &&(
-        <Weather cityId={city.cityId} cityLocation={city.cityLocation} cityName={city.cityName}></Weather>
-      )}
+      <main>
+        {city && (
+          <Weather
+            cityId={city.cityId}
+            cityLocation={city.cityLocation}
+            cityName={city.cityName}
+          ></Weather>
+        )}
+      </main>
     </>
   );
 }

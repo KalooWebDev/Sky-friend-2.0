@@ -25,7 +25,7 @@ function Weather({ cityId, cityLocation, cityName }){
             }
         }
         getWeather();
-    }, []);
+    }, [cityId]);
 
     if(error){
         return <h1>{error}</h1>
