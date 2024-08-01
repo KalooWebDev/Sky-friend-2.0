@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react"
 
 import { formatDate } from "../utils/dateUtils";
+import weatherIcons from "../utils/weatherIconsUtils";
 
 function Weather({ cityId, cityLocation, cityName }){
     const [error, setError] = useState(null);
 
     const [date, setDate] = useState(null);
+    const [icon, setIcon] = useState(null);
     const [weather, setWeather] = useState(null);
 
     const API_KEY = import.meta.env.VITE_API_KEY;
@@ -23,7 +25,9 @@ function Weather({ cityId, cityLocation, cityName }){
                 const data = await response.json();
                 const condition = data[0].WeatherText;
                 const localDate = data[0].LocalObservationDateTime;
+                const isDayTime = data[0].IsDayTime; 
                 setDate(formatDate(localDate));
+                setIcon(isDayTime ? weatherIcons.day[condition] : weatherIcons.night[condition]);
                 setWeather(condition);
             } catch (err){
                 setError(err.message)
@@ -42,6 +46,9 @@ function Weather({ cityId, cityLocation, cityName }){
             <h1>{cityName}</h1>
             <h3>{date}</h3>
             <h1>Clima Atual</h1>
+            {icon &&
+                <img src={icon} alt={weather}/>
+            }
             <h2>{weather}</h2>
         </>
     )

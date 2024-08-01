@@ -21,4 +21,4 @@ export function formatDate(dateString){
     const day = date.getUTCDate();
     const month = months[date.getUTCMonth()];
     return `${dayOfWeek} ${day} ${month}`;
-}
+  }

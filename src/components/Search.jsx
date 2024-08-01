@@ -19,7 +19,6 @@ function Search({ onCityReceived }) {
             throw new Error("Failed to communicate with API");
           }
           const data = await response.json();
-          console.log(data)
           setSuggestions(data);
         } catch (err) {
           setError(err.message);
@@ -43,7 +42,7 @@ function Search({ onCityReceived }) {
       }
       const data = await response.json();
       if (data.length > 0) {
-        const city = data[0]; // Assuming the first result is the most relevant
+        const city = data[0];
         handleClick(city);
       } else {
         setError("No cities found");
