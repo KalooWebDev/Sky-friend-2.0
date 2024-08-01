@@ -7,7 +7,7 @@ import { formatDate } from "../utils/dateUtils";
 function Weather({ cityId, cityLocation, cityName }){
     const [error, setError] = useState(null);
 
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(null);
     const [weather, setWeather] = useState(null);
 
     const API_KEY = import.meta.env.VITE_API_KEY;
@@ -21,9 +21,10 @@ function Weather({ cityId, cityLocation, cityName }){
                     throw new Error("Failed in Current Weather API");
                 }
                 const data = await response.json();
-                console.log(data);
-                setDate(formatDate(data[0].LocalObservationDateTime));
-                setWeather(data[0].WeatherText);
+                const condition = data[0].WeatherText;
+                const localDate = data[0].LocalObservationDateTime;
+                setDate(formatDate(localDate));
+                setWeather(condition);
             } catch (err){
                 setError(err.message)
             }
