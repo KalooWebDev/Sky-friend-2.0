@@ -43,7 +43,7 @@ const weatherIcons = {
   },
   night:{
     "Céu claro": "src/assets/night _svg/wi-night-clear.svg",
-    "Predominantemente claro": "src/assets/night _svg/wi-night-clear.svg",
+    "Predominantemente aberto": "src/assets/night _svg/wi-night-clear.svg",
     "Parcialmente nublado": "src/assets/night _svg/wi-night-clear.svg",
     "Nuvens intermitentes": "src/assets/night _svg/wi-night-alt-partly-cloudy.svg",
     "Neblina com céu claro": "src/assets/night _svg/wi-night-cloudy-windy.svg",

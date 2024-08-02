@@ -11,6 +11,8 @@ function Weather({ cityId, cityLocation, cityName }){
     const [date, setDate] = useState(null);
     const [icon, setIcon] = useState(null);
     const [weather, setWeather] = useState(null);
+    const [temperature, setTemperature] = useState(null);
+    const [realTemperaute, setRealTemperature] = useState(null);
 
     const API_KEY = import.meta.env.VITE_API_KEY;
     const URL = `http://dataservice.accuweather.com/currentconditions/v1/${cityId}?apikey=${API_KEY}&language=pt-br&details=true`;
@@ -25,10 +27,15 @@ function Weather({ cityId, cityLocation, cityName }){
                 const data = await response.json();
                 const condition = data[0].WeatherText;
                 const localDate = data[0].LocalObservationDateTime;
-                const isDayTime = data[0].IsDayTime; 
+                const isDayTime = data[0].IsDayTime;
+                const temp = `${data[0].ApparentTemperature.Metric.Value}`;
+                const realTemp = `${data[0].RealFeelTemperature.Metric.Value}`;
+
                 setDate(formatDate(localDate));
                 setIcon(isDayTime ? weatherIcons.day[condition] : weatherIcons.night[condition]);
                 setWeather(condition);
+                setTemperature(temp);
+                setRealTemperature(realTemp);
             } catch (err){
                 setError(err.message)
             }
@@ -50,6 +57,8 @@ function Weather({ cityId, cityLocation, cityName }){
                 <img src={icon} alt={weather}/>
             }
             <h2>{weather}</h2>
+            <h3>C° {temperature}</h3>
+            <h4>Sensação Térmica C°{realTemperaute}</h4>
         </>
     )
 }
