@@ -17,7 +17,7 @@ function GetGeoposition({ onLocationReceived }){
         );
         } else {
             return(
-                setError("Seu navegador não suporta a Geolocalização")
+                setError("Your browser dont suport the geolocation")
             );
         }
     }, []);

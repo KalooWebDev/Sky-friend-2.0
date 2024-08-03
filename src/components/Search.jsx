@@ -67,7 +67,7 @@ function Search({ onCityReceived }) {
   return (
     <div>
       <input type="text" onChange={handleTextChange} />
-      <button onClick={handleSearchButtonClick}>Pesquisar</button>
+      <button onClick={handleSearchButtonClick}>Search</button>
       <ul>
         {suggestions.map((suggestion) => (
           <li 

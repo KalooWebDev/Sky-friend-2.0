@@ -15,7 +15,7 @@ function Weather({ cityId, cityLocation, cityName }){
     const [realTemperaute, setRealTemperature] = useState(null);
 
     const API_KEY = import.meta.env.VITE_API_KEY;
-    const URL = `http://dataservice.accuweather.com/currentconditions/v1/${cityId}?apikey=${API_KEY}&language=pt-br&details=true`;
+    const URL = `http://dataservice.accuweather.com/currentconditions/v1/${cityId}?apikey=${API_KEY}&language=en-us&details=true`;
 
     useEffect(() => {
         async function getWeather(){
@@ -52,13 +52,13 @@ function Weather({ cityId, cityLocation, cityName }){
             <h3>{cityLocation}</h3>
             <h1>{cityName}</h1>
             <h3>{date}</h3>
-            <h1>Clima Atual</h1>
+            <h1>Current Weather</h1>
             {icon &&
                 <img src={icon} alt={weather}/>
             }
             <h2>{weather}</h2>
             <h3>C° {temperature}</h3>
-            <h4>Sensação Térmica C°{realTemperaute}</h4>
+            <h4>Feels like C°{realTemperaute}</h4>
         </>
     )
 }
