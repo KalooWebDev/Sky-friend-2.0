@@ -45,7 +45,7 @@ function App() {
               cityId={city.cityId}
               cityLocation={city.cityLocation}
               cityName={city.cityName}
-              weatherData={handleResponseReceived}
+              onWeatherResponseReceived={handleResponseReceived}
             ></Weather>
           )}
         </main>

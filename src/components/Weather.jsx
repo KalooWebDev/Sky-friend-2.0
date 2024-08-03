@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 import { formatDate } from "../utils/dateUtils";
 import weatherIcons from "../utils/weatherIconsUtils";
 
-function Weather({ cityId, cityLocation, cityName, weatherData }) {
+function Weather({ cityId, cityLocation, cityName, onWeatherResponseReceived }) {
   const [error, setError] = useState(null);
 
   const [date, setDate] = useState(null);
   const [icon, setIcon] = useState(null);
-  const [weather, setWeather] = useState(null);
   const [temperature, setTemperature] = useState(null);
   const [realTemperaute, setRealTemperature] = useState(null);
+  const [weather, setWeather] = useState(null);
 
   const API_KEY = import.meta.env.VITE_API_KEY;
   const URL = `http://dataservice.accuweather.com/currentconditions/v1/${cityId}?apikey=${API_KEY}&language=en-us&details=true`;
@@ -40,7 +40,7 @@ function Weather({ cityId, cityLocation, cityName, weatherData }) {
         setWeather(condition);
         setTemperature(temp);
         setRealTemperature(realTemp);
-        weatherData(data);
+        onWeatherResponseReceived(data);
       } catch (err) {
         setError(err.message);
       }
@@ -57,11 +57,10 @@ function Weather({ cityId, cityLocation, cityName, weatherData }) {
       <h3>{cityLocation}</h3>
       <h1>{cityName}</h1>
       <h3>{date}</h3>
-      <h1>Current Weather</h1>
       {icon && <img src={icon} alt={weather} />}
-      <h2>{weather}</h2>
       <h3>C° {temperature}</h3>
       <h4>Feels like C°{realTemperaute}</h4>
+      <h2>{weather}</h2>
     </>
   );
 }
