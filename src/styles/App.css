@@ -1,5 +1,21 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
+  }
+
+  .container {
+    height: 200vh;
+  }
+  
+  section {
+    height: 100vh;
+  }
+  
+  section:first-of-type {
+    background-color: lightblue;
+  }
+  
+  section:last-of-type {
+    background-color: lightcoral;
+  }
